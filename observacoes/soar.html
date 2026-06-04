@@ -138,6 +138,11 @@
             }
         }
 
+        if (p.get('plano')) {
+            document.getElementById('containerPlano').style.display = 'block';
+            document.getElementById('linkPlano').href = "../" + p.get('plano');
+        }
+
         // --- BUSCA DE EFEMÉRIDES CORRIGIDA (CERRO PACHÓN - CHILE) ---
         async function buscarEfemérides() {
             const lat = "-30.238"; // Coordenada SOAR
