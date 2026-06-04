@@ -48,8 +48,8 @@
             // Junho (Mês 5)
             {dia: 08,mes: 5,ano: 2026,nome: "SOAR: Ocultação", link:"observacoes/soar.html?obs=Julio, Giuliano&proj=Studying small Solar System bodies through stellar occultations&PI=Julio Ignacio Bueno de Camargo&links=Ixion:https://lesia.obspm.fr/lucky-star/occ.php?p=156507", classe: "event-soar"},
             
-            {dia: 14,mes: 5,ano: 2026,nome: "SOAR: Rotação", link:"observacoes/soar.html?obs=Eros, Giuliano&proj=Obtaining rotation light curves of Neptune and Uranus Trojans to determine their 3D shapes&PI=Eros de Oliveira Gradovski&alvos=2013KY18,2011QF99,2010EN65&det=goodman&plano=plano_da_noite/2026A/plano_da_noite__2026-05-24.txt", classe: "event-soar"},
-            {dia: 15,mes: 5,ano: 2026,nome: "SOAR: Rotação", link:"observacoes/soar.html?obs=Eros, Giuliano&proj=Obtaining rotation light curves of Neptune and Uranus Trojans to determine their 3D shapes&PI=Eros de Oliveira Gradovski&alvos=2013KY18,2011QF99,2010EN65&det=goodman&plano=plano_da_noite/2026A/plano_da_noite__2026-05-24.txt", classe: "event-soar"},
+            {dia: 14,mes: 5,ano: 2026,nome: "SOAR: Rotação", link:"observacoes/soar.html?obs=Eros, Giuliano&proj=Obtaining rotation light curves of Neptune and Uranus Trojans to determine their 3D shapes&PI=Eros de Oliveira Gradovski&alvos=2013KY18,2011QF99,2010EN65&det=goodman&plano=plano_da_noite/2026A/plano_da_noite__2026-06-14.txt", classe: "event-soar"},
+            {dia: 15,mes: 5,ano: 2026,nome: "SOAR: Rotação", link:"observacoes/soar.html?obs=Eros, Giuliano&proj=Obtaining rotation light curves of Neptune and Uranus Trojans to determine their 3D shapes&PI=Eros de Oliveira Gradovski&alvos=2013KY18,2011QF99,2010EN65&det=goodman&plano=plano_da_noite/2026A/plano_da_noite__2026-06-15.txt", classe: "event-soar"},
 
             {dia: 28,mes: 5,ano: 2026,nome: "1m60: Ocultação", link:"observacoes/1m60.html?obs=Observadores a definir&proj=Studying small Solar System bodies through stellar occultations&PI=Julio Ignacio Bueno de Camargo&links=Ixion:https://lesia.obspm.fr/lucky-star/occ.php?p=156514&det=sparc4", classe: "event-1m60"},
             // Julho (Mês 6)
