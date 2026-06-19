@@ -59,7 +59,7 @@
             {dia: 24,mes: 6,ano: 2026,nome: "1m60: Ocultação", link:"observacoes/1m60.html?obs=Observadores a definir&proj=Studying small Solar System bodies through stellar occultations&PI=Julio Ignacio Bueno de Camargo&links=Ixion (principal):https://lesia.obspm.fr/lucky-star/occ.php?p=156525,Ixion:https://lesia.obspm.fr/lucky-star/occ.php?p=156524&det=sparc4", classe: "event-1m60"},
             // Agosto (Mês 7)   
             {dia: 16,mes: 7,ano: 2026,nome: "ON: Ocultação", link:"observacoes/on.html?obs=Giuliano Margoti&proj=Observações de ocultações no Observatório Nacional&PI=Giuliano Margoti&links=Patroclus:https://lesia.obspm.fr/lucky-star/occ.php?p=173471&det=qhy", classe: "event-on"},
-            {dia: 16,mes: 7,ano: 2026,nome: "ON: Ocultação", link:"observacoes/on.html?obs=Giuliano Margoti&proj=Observações de ocultações no Observatório Nacional&PI=Giuliano Margoti&links=Tatjana:https://gaiamoons.imcce.fr/occ.php?p=96572&det=qhy", classe: "event-on"},
+            {dia: 04,mes: 7,ano: 2026,nome: "ON: Ocultação", link:"observacoes/on.html?obs=Giuliano Margoti&proj=Observações de ocultações no Observatório Nacional&PI=Giuliano Margoti&links=Tatjana:https://gaiamoons.imcce.fr/occ.php?p=96572&det=qhy", classe: "event-on"},
 
             {dia: 07,mes: 7,ano: 2026,nome: "1m60: Ocultação", link:"observacoes/1m60.html?obs=Observadores a definir&proj=Studying small Solar System bodies through stellar occultations&PI=Julio Ignacio Bueno de Camargo&links=2002KX14:https://lesia.obspm.fr/lucky-star/occ.php?p=150107&det=sparc4", classe: "event-1m60"},
             // Setembro (Mês 8)    
