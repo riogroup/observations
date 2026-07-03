@@ -90,15 +90,19 @@
             // Fevereiro (Mês 1)
             // Março (Mês 2)
             {dia: 27,mes: 2,ano: 2027,nome: "ON: Ocultação", link:"observacoes/on.html?obs=Giuliano Margoti&proj=Observações de ocultações no Observatório Nacional&PI=Giuliano Margoti&links=Odysseus:https://lesia.obspm.fr/lucky-star/occ.php?p=170553&det=qhy", classe: "event-on"},
-            // Abril (Mês 3)
-            // Maio (Mês 4)
-            // Junho (Mês 5)
-            // Julho (Mês 6)
-            // Agosto (Mês 7)
-            // Setembro (Mês 8)
-            // Outubro (Mês 9)
-            // Novembro (Mês 10)
-            // Dezembro (Mês 11)
+            
+        // SO2026B-002 - Photometric Characterization of Centaurs: (10199) Chariklo, (5145) Pholus and (32532) Thereus
+            {dia: 04,mes: 8,ano: 2026,nome:  "SOAR: Rotação", link:"observacoes/soar.html?obs=Giuliano Margoti&proj=SO2026B-002 - Photometric Characterization of Centaurs: (10199) Chariklo, (5145) Pholus and (32532) Thereus&PI=Giuliano Margoti&alvos=Chariklo, Pholus, Chiron&det=goodman", classe: "event-soar"},
+            {dia: 18,mes: 8,ano: 2026,nome:  "SOAR: Rotação", link:"observacoes/soar.html?obs=Giuliano Margoti&proj=SO2026B-002 - Photometric Characterization of Centaurs: (10199) Chariklo, (5145) Pholus and (32532) Thereus&PI=Giuliano Margoti&alvos=Chariklo, Pholus, Chiron&det=goodman", classe: "event-soar"},
+            {dia: 31,mes: 11,ano: 2026,nome: "SOAR: Rotação", link:"observacoes/soar.html?obs=Giuliano Margoti&proj=SO2026B-002 - Photometric Characterization of Centaurs: (10199) Chariklo, (5145) Pholus and (32532) Thereus&PI=Giuliano Margoti&alvos=2008 FC76, Chiron&det=goodman", classe: "event-soar"},
 
-                
+        // SO2026B-009 - Study of small bodies in the Solar System with stellar occultations
+            {dia: 16,mes: 8,ano: 2026,nome: "SOAR: Ocultação", link:"observacoes/soar.html?obs=Julio, Giuliano&proj=SO2026B-009 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&links=", classe: "event-soar"},
+            {dia: 01,mes: 9,ano: 2026,nome: "SOAR: Ocultação", link:"observacoes/soar.html?obs=Julio, Giuliano&proj=SO2026B-009 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&links=", classe: "event-soar"},
+            {dia: 21,mes: 9,ano: 2026,nome: "SOAR: Ocultação", link:"observacoes/soar.html?obs=Julio, Giuliano&proj=SO2026B-009 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&links=", classe: "event-soar"},
+            {dia: 21,mes: 0,ano: 2027,nome: "SOAR: Ocultação", link:"observacoes/soar.html?obs=Julio, Giuliano&proj=SO2026B-009 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&links=", classe: "event-soar"},
+
+
+
+
         ];
