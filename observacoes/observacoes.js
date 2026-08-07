@@ -79,7 +79,7 @@
             {dia: 16,mes: 7,ano: 2026,nome: "ON: Ocultação", link:"observacoes/on.html?obs=Giuliano Margoti&proj=Observações de ocultações no Observatório Nacional&PI=Giuliano Margoti&links=Patroclus:https://lesia.obspm.fr/lucky-star/occ.php?p=173471&det=qhy", classe: "event-on"},
             {dia: 04,mes: 7,ano: 2026,nome: "ON: Ocultação", link:"observacoes/on.html?obs=Giuliano Margoti&proj=Observações de ocultações no Observatório Nacional&PI=Giuliano Margoti&links=Tatjana:https://gaiamoons.imcce.fr/occ.php?p=96572&det=qhy", classe: "event-on"},
 
-            {dia: 07,mes: 7,ano: 2026,nome: "1m60: Ocultação", link:"observacoes/1m60.html?obs=Giuliano, Christian, Matheus, Thamiris&proj=Studying small Solar System bodies through stellar occultations&PI=Julio Ignacio Bueno de Camargo&links=2002KX14:https://lesia.obspm.fr/lucky-star/occ.php?p=150107&det=sparc4,plano=plano_da_noite/2026A/plano_da_noite__2026-08-07_lucky_star_OPD.txt", classe: "event-1m60"},
+            {dia: 07,mes: 7,ano: 2026,nome: "1m60: Ocultação", link:"observacoes/1m60.html?obs=Giuliano, Christian, Thamiris&proj=Studying small Solar System bodies through stellar occultations&PI=Julio Ignacio Bueno de Camargo&links=2002KX14:https://lesia.obspm.fr/lucky-star/occ.php?p=150107&det=sparc4&plano=plano_da_noite/2026A/plano_da_noite__2026-08-07_lucky_star_OPD.txt", classe: "event-1m60"},
             // Setembro (Mês 8)    
             {dia: 25,mes: 8,ano: 2026,nome: "ON: Ocultação", link:"observacoes/on.html?obs=Giuliano Margoti&proj=Observações de ocultações no Observatório Nacional&PI=Giuliano Margoti&links=2004UX10:https://lesia.obspm.fr/lucky-star/occ.php?p=161877&det=qhy", classe: "event-on"},
             // Outubro (Mês 9)
