@@ -102,7 +102,10 @@
             {dia: 21,mes: 9,ano: 2026,nome: "SOAR: Ocultação", link:"observacoes/soar.html?obs=Julio, Giuliano&proj=SO2026B-009 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&links=", classe: "event-soar"},
             {dia: 21,mes: 0,ano: 2027,nome: "SOAR: Ocultação", link:"observacoes/soar.html?obs=Julio, Giuliano&proj=SO2026B-009 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&links=", classe: "event-soar"},
 
+        // SO2026B-002 - Multiband rotational photometry of Jupiter Trojans
+            {dia: 22,mes: 9,ano: 2026,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
 
-
+        // OI2026B-012 - Mutual Phenomena of Jupiter's satellites
+            {dia: 25,mes: 9,ano: 2026,nome:  "IAG: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
 
         ];
