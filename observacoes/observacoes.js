@@ -104,8 +104,40 @@
 
         // SO2026B-002 - Multiband rotational photometry of Jupiter Trojans
             {dia: 22,mes: 9,ano: 2026,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
+            {dia: 27,mes: 9,ano: 2026,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
+            {dia: 28,mes: 9,ano: 2026,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
+            {dia: 01,mes: 10,ano: 2026,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
+            {dia: 20,mes: 11,ano: 2026,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
+            {dia: 16,mes: 1,ano: 2027,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
+            {dia: 17,mes: 1,ano: 2027,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
+            {dia: 18,mes: 1,ano: 2027,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
+            {dia: 19,mes: 1,ano: 2027,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
+            {dia: 20,mes: 1,ano: 2027,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
+            {dia: 21,mes: 1,ano: 2027,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
+            {dia: 22,mes: 1,ano: 2027,nome:  "1m60: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OP2026B-003 - Multiband rotational photometry of Jupiter Trojans&PI=Giuliano Margoti&det=sparc4", classe: "event-1m60"},
 
         // OI2026B-012 - Mutual Phenomena of Jupiter's satellites
-            {dia: 25,mes: 9,ano: 2026,nome:  "IAG: Rotação", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
+            {dia: 25,mes: 9,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
+            {dia: 29,mes: 9,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
+            {dia: 13,mes: 10,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
+            {dia: 15,mes: 10,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
+            {dia: 06,mes: 11,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
+            {dia: 19,mes: 11,ano: 2026,nome:  "IAG: Fenômenos mútuos", link:"observacoes/1m60.html?obs=Giuliano Margoti&proj=OI2026B-012 - Mutual Phenomena of Jupiter's satellites&PI=Giuliano Margoti&det=ikonl", classe: "event-iag"},
+
+        // OI2026B-015 - Astrometry of Jupiters Galilean Satellites
+            {dia: 1,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=A definir&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl", classe: "event-iag"},
+            {dia: 2,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=A definir&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl", classe: "event-iag"},
+            {dia: 3,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=A definir&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl", classe: "event-iag"},
+            {dia: 4,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=A definir&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl", classe: "event-iag"},
+            {dia: 5,mes: 10,ano: 2026,nome:  "IAG: Astrometria", link:"observacoes/1m60.html?obs=A definir&proj=OI2026B-015 - Astrometry of Jupiters Galilean Satellites&PI=Viviane Figueiredo Peixoto&det=ikonl", classe: "event-iag"},
+                
+        // OP2026B-004 - Study of small bodies in the Solar System with stellar occultations
+            {dia: 16,mes: 8,ano: 2027,nome:  "1m60: Ocultação", link:"observacoes/1m60.html?obs=A definir&proj=OP2026B-004 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&det=sparc4", classe: "event-1m60"},
+            {dia: 1,mes: 9,ano: 2027,nome:  "1m60: Ocultação", link:"observacoes/1m60.html?obs=A definir&proj=OP2026B-004 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&det=sparc4", classe: "event-1m60"},
+            {dia: 21,mes: 9,ano: 2027,nome:  "1m60: Ocultação", link:"observacoes/1m60.html?obs=A definir&proj=OP2026B-004 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&det=sparc4", classe: "event-1m60"},
+            {dia: 28,mes: 10,ano: 2027,nome:  "1m60: Ocultação", link:"observacoes/1m60.html?obs=A definir&proj=OP2026B-004 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&det=sparc4", classe: "event-1m60"},
+            {dia: 29,mes: 10,ano: 2027,nome:  "1m60: Ocultação", link:"observacoes/1m60.html?obs=A definir&proj=OP2026B-004 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&det=sparc4", classe: "event-1m60"},
+            {dia: 11,mes: 11,ano: 2027,nome:  "1m60: Ocultação", link:"observacoes/1m60.html?obs=A definir&proj=OP2026B-004 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&det=sparc4", classe: "event-1m60"},
+            {dia: 19,mes: 11,ano: 2027,nome:  "1m60: Ocultação", link:"observacoes/1m60.html?obs=A definir&proj=OP2026B-004 - Study of small bodies in the Solar System with stellar occultations&PI=Julio Ignacio Bueno de Camargo&det=sparc4", classe: "event-1m60"},
 
         ];
