@@ -84,18 +84,24 @@ const spanNota = document.getElementById('Nota');
 if (notaParam && notaParam.endsWith('.json')) {
     const chaveData = `${parseInt(ano)}-${parseInt(mes)}-${parseInt(dia)}`;
     
-    // O fetch agora chama o arquivo diretamente na mesma pasta
-    fetch(notaParam) 
+    // O parâmetro '?v=' força o navegador a ignorar o cache antigo
+    fetch(`${notaParam}?v=${new Date().getTime()}`) 
         .then(resposta => {
             if (!resposta.ok) throw new Error("Arquivo não encontrado (Erro 404)");
             return resposta.json();
         })
         .then(notas => {
-            spanNota.innerText = notas[chaveData] || "Sem notas para esta data";
+            if (notas[chaveData]) {
+                spanNota.innerText = notas[chaveData];
+            } else {
+                // Mostra na tela qual chave o JS tentou buscar para ajudar no ajuste
+                spanNota.innerText = `Sem notas (Procurou pela chave: "${chaveData}")`;
+                console.log("JSON lido com sucesso:", notas);
+            }
         })
         .catch(erro => {
             console.error("Erro ao carregar o arquivo de notas:", erro);
-            spanNota.innerText = "Erro ao carregar a nota";
+            spanNota.innerText = "Erro de formatação no arquivo .json (verifique as vírgulas)";
         });
 } else {
     spanNota.innerText = notaParam || "Sem notas";
