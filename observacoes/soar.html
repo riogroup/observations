@@ -76,8 +76,33 @@
         document.getElementById('proj').innerText = projeto;
         document.getElementById('det').innerText = detector || "Não especificado";
         document.getElementById('PI').innerText = p.get('PI') || "---";
-        document.getElementById('Nota').innerText = p.get('Nota') || "Sem notas";
 
+
+const notaParam = p.get('Nota');
+const spanNota = document.getElementById('Nota');
+
+if (notaParam && notaParam.endsWith('.json')) {
+    const chaveData = `${parseInt(ano)}-${parseInt(mes)}-${parseInt(dia)}`;
+    
+    // O fetch agora chama o arquivo diretamente na mesma pasta
+    fetch(notaParam) 
+        .then(resposta => {
+            if (!resposta.ok) throw new Error("Arquivo não encontrado (Erro 404)");
+            return resposta.json();
+        })
+        .then(notas => {
+            spanNota.innerText = notas[chaveData] || "Sem notas para esta data";
+        })
+        .catch(erro => {
+            console.error("Erro ao carregar o arquivo de notas:", erro);
+            spanNota.innerText = "Erro ao carregar a nota";
+        });
+} else {
+    spanNota.innerText = notaParam || "Sem notas";
+}
+
+
+        
         // Lógica de Detector corrigida para SOAR
         if (detector) {
             const d = detector.toLowerCase();
