@@ -341,9 +341,9 @@
         }
 
         // --- SISTEMA DE REGISTRO DE OBSERVAÇÕES (GITHUB API) ---
-        const GITHUB_OWNER = "riogroup";
-        const GITHUB_REPO = "observations";
-        const CAMINHO_ARQUIVO = "observacoes/registros.json";
+        const GITHUB_OWNER = "riogroup"; // Ou seu usuário, se criar na conta pessoal
+        const GITHUB_REPO = "registros-observacoes"; // Nome do repositório exclusivo
+        const CAMINHO_ARQUIVO = "registros.json"; // Agora fica direto na raiz desse repositório
         const TELESCOPIO_ATUAL = "ON";
 
         const chaveNoite = (ano && mes && dia) ? `${parseInt(ano)}-${parseInt(mes)}-${parseInt(dia)}` : "sem-data";
@@ -354,14 +354,16 @@
 
         async function carregarRegistrosDaNoite() {
             try {
-                const resp = await fetch(`registros.json?v=${new Date().getTime()}`);
+                // Lê o registros.json direto do repositório separado
+                const urlLeitura = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/main/${CAMINHO_ARQUIVO}?v=${new Date().getTime()}`;
+                const resp = await fetch(urlLeitura);
                 if (!resp.ok) return;
                 const dados = await resp.json();
                 const lista = dados[chaveNoite] || [];
                 const registrosTel = lista.filter(item => item.telescopio === TELESCOPIO_ATUAL);
                 atualizarTabelaNaTela(registrosTel);
             } catch (e) {
-                console.log("Nenhum registro anterior carregado localmente.");
+                console.log("Nenhum registro anterior carregado.");
             }
         }
 
