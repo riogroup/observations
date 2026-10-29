@@ -27,7 +27,7 @@
     <div class="card">
         <h1> Telescópio Observatório Nacional 0.32m</h1>
         <h3 id="exibirData">Carregando data...</h3>
-        <img src="../imagens/20250209_190755.jpg" alt="Telescópio Zeiss" class="telescope-img">
+        <img src="../imagens/20250209_190755.jpg" alt="Telescópio ON" class="telescope-img">
         
         <div class="info">
             <p><strong>Observadores:</strong> <span id="obs">---</span></p>
@@ -44,6 +44,104 @@
             <span class="solar-title">Horários importantes <span class="utc-tag">UTC</span></span>
             <strong>Anoitecer:</strong> Civil: <span id="civil_fim">...</span> | Náutico: <span id="nautico_fim">...</span><br>
             <strong>Amanhecer:</strong> Náutico: <span id="nautico_ini">...</span> | Civil: <span id="civil_ini">...</span>
+        </div>
+
+        <!-- Calculadora de Sinal-Ruído -->
+        <div class="aux-box" style="margin-top: 15px;">
+            <span class="solar-title" style="color: #6a1b9a; margin-bottom: 10px;">Calculadora de Sinal-Ruído</span>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                <div><label style="font-size: 13px; font-weight: bold;">Centro X:</label><br><input type="text" id="in_xc" value="512.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Centro Y:</label><br><input type="text" id="in_yc" value="512.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Abertura (r):</label><br><input type="text" id="in_r" value="5.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Ganho:</label><br><input type="text" id="in_gain" value="1.5" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Fluxo Alvo:</label><br><input type="text" id="in_falvo" value="100.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+                <div><label style="font-size: 13px; font-weight: bold;">Fluxo Céu:</label><br><input type="text" id="in_fcel" value="10.0" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></div>
+            </div>
+
+            <button onclick="calcularSNR()" class="btn-download" style="width: 100%; border: none; cursor: pointer; padding: 10px;">Calcular SNR</button>
+
+            <div id="resultadoSNR" style="display: none; margin-top: 15px; background: white; padding: 12px; border-radius: 6px; font-size: 14px; border: 1px solid #f8bbd0;">
+                <p style="margin: 0 0 5px 0;"><strong>Pixels na abertura (n_pix):</strong> <span id="out_npix"></span></p>
+                <p style="margin: 0 0 5px 0;"><strong>Sinal/Ruído (SNR):</strong> <span id="out_snr" style="color: #6a1b9a; font-weight: bold; font-size: 16px;"></span></p>
+                <p style="margin: 0;"><strong>Erro na magnitude:</strong> <span id="out_err" style="color: #d32f2f; font-weight: bold;"></span></p>
+            </div>
+        </div>
+
+        <!-- Caixa de Registro de Observação (Log da Noite) -->
+        <div class="aux-box" style="margin-top: 15px;">
+            <span class="solar-title" style="color: #6a1b9a; margin-bottom: 10px;">Registrar Objeto Observado</span>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                <div style="grid-column: span 2;">
+                    <label style="font-size: 13px; font-weight: bold;">Nome do Objeto:</label><br>
+                    <input type="text" id="log_obj" placeholder="Ex: 2004 UX10" style="width: 95%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div>
+                    <label style="font-size: 13px; font-weight: bold;">Início (UTC):</label><br>
+                    <input type="text" id="log_ini" placeholder="Ex: 01:40" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div>
+                    <label style="font-size: 13px; font-weight: bold;">T. Exposição (s):</label><br>
+                    <input type="text" id="log_texp" placeholder="Ex: 2.5s" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div>
+                    <label style="font-size: 13px; font-weight: bold;">Modo de Aquisição:</label><br>
+                    <select id="log_modo" style="width: 95%; padding: 5px; border: 1px solid #ccc; border-radius: 4px; background: white;">
+                        <option value="Convencional">Convencional</option>
+                        <option value="EMCCD">EMCCD</option>
+                        <option value="Vídeo / QHY">Vídeo / QHY</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-size: 13px; font-weight: bold;">Binagem:</label><br>
+                    <select id="log_bin" style="width: 95%; padding: 5px; border: 1px solid #ccc; border-radius: 4px; background: white;">
+                        <option value="1x1">1x1</option>
+                        <option value="2x2">2x2</option>
+                        <option value="3x3">3x3</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-size: 13px; font-weight: bold;">Tamanho do Campo:</label><br>
+                    <select id="log_campo" style="width: 95%; padding: 5px; border: 1px solid #ccc; border-radius: 4px; background: white;">
+                        <option value="Full Frame">Full Frame</option>
+                        <option value="Median">Median (512x512)</option>
+                        <option value="Small">Small (256x256)</option>
+                        <option value="ROI Personalizado">ROI Personalizado</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-size: 13px; font-weight: bold;">Posição X, Y:</label><br>
+                    <input type="text" id="log_xy" placeholder="Ex: 512, 512" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="grid-column: span 2;">
+                    <label style="font-size: 11px; color: #555;">Chave GitHub (Token - fica salvo no navegador após a 1ª vez):</label><br>
+                    <input type="password" id="log_token" placeholder="github_pat_... ou ghp_..." style="width: 95%; padding: 4px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px;">
+                </div>
+            </div>
+
+            <button onclick="salvarRegistroGitHub()" id="btnSalvarLog" class="btn-download" style="width: 100%; border: none; cursor: pointer; padding: 10px;">Salvar na Página e no GitHub</button>
+            <div id="statusLog" style="font-size: 12px; margin-top: 8px; font-weight: bold; text-align: center;"></div>
+
+            <!-- Tabela de objetos já observados nesta noite -->
+            <div id="areaTabelaLogs" style="margin-top: 15px; display: none;">
+                <strong style="font-size: 14px; color: #6a1b9a;">Objetos Observados nesta Noite:</strong>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; background: white; text-align: center;">
+                        <thead>
+                            <tr style="background: #f3e5f5; color: #6a1b9a;">
+                                <th style="border: 1px solid #f8bbd0; padding: 5px;">Objeto</th>
+                                <th style="border: 1px solid #f8bbd0; padding: 5px;">Início</th>
+                                <th style="border: 1px solid #f8bbd0; padding: 5px;">T. Exp</th>
+                                <th style="border: 1px solid #f8bbd0; padding: 5px;">Modo / Bin</th>
+                                <th style="border: 1px solid #f8bbd0; padding: 5px;">Campo</th>
+                                <th style="border: 1px solid #f8bbd0; padding: 5px;">X, Y</th>
+                            </tr>
+                        </thead>
+                        <tbody id="corpoTabelaLogs"></tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         
         <p><strong>Nota: </strong> <span id="Nota">---</span></p>
@@ -66,19 +164,47 @@
         const dia = p.get('d');
         const mes = p.get('m');
         const ano = p.get('a');
+        const projeto = p.get('proj') || "";
+        const projetoNormalizado = projeto.toLowerCase();
     
         if (dia && mes && ano) {
             const dataFormatada = `${dia.padStart(2, '0')}/${mes.padStart(2, '0')}/${ano}`;
             document.getElementById('exibirData').innerText = `Noite de: ${dataFormatada}`;
         }
         
-        const projeto = p.get('proj') || "";
         const detector = p.get('det') || "";
         document.getElementById('obs').innerText = p.get('obs') || "---";
         document.getElementById('proj').innerText = projeto;
         document.getElementById('det').innerText = detector || "Não especificado";
         document.getElementById('PI').innerText = p.get('PI') || "---";
-        document.getElementById('Nota').innerText = p.get('Nota') || "Sem notas";
+
+        // --- LEITURA DE NOTAS (JSON OU TEXTO) ---
+        const notaParam = p.get('Nota');
+        const spanNota = document.getElementById('Nota');
+
+        if (notaParam && notaParam.endsWith('.json')) {
+            const chaveData = `${parseInt(ano)}-${parseInt(mes)}-${parseInt(dia)}`;
+            
+            fetch(`${notaParam}?v=${new Date().getTime()}`) 
+                .then(resposta => {
+                    if (!resposta.ok) throw new Error("Arquivo não encontrado (Erro 404)");
+                    return resposta.json();
+                })
+                .then(notas => {
+                    if (notas[chaveData]) {
+                        spanNota.innerHTML = notas[chaveData];
+                    } else {
+                        spanNota.innerText = `Sem notas (Procurou pela chave: "${chaveData}")`;
+                        console.log("JSON lido com sucesso:", notas);
+                    }
+                })
+                .catch(erro => {
+                    console.error("Erro ao carregar o arquivo de notas:", erro);
+                    spanNota.innerText = "Erro de formatação no arquivo .json";
+                });
+        } else {
+            spanNota.innerHTML = notaParam || "Sem notas";
+        }
 
         if (detector) {
             const d = detector.toLowerCase();
@@ -93,13 +219,12 @@
         }
 
         // --- 1. SEÇÃO DE OCULTAÇÃO ---
-        // Aparece se o nome do projeto contiver "ocultação" OU se houver o parâmetro "links"
         const linksString = p.get('links');
-        if (projeto.includes("ocultação") || projeto.includes("occultation") || linksString) {
+        if (projetoNormalizado.includes("ocultação") || projetoNormalizado.includes("occultation") || linksString) {
             if (linksString) {
                 document.getElementById('secaoOcultacao').style.display = 'block';
                 const container = document.getElementById('listaLinks');
-                container.innerHTML = ""; // Limpa antes de preencher
+                container.innerHTML = "";
                 linksString.split(',').forEach(par => {
                     const idx = par.indexOf(':');
                     if(idx !== -1) {
@@ -114,9 +239,8 @@
         }
     
         // --- 2. SEÇÃO DE ROTAÇÃO ---
-        // Aparece se o nome do projeto contiver "rotação" OU se houver o parâmetro "alvos"
         const alvosString = p.get('alvos');
-        if (projeto.includes("rotação") || projeto.includes("rotation") || alvosString) {
+        if (projetoNormalizado.includes("rotação") || projetoNormalizado.includes("rotation") || alvosString) {
             if (alvosString) {
                 document.getElementById('secaoRotação').style.display = 'block';
                 const container = document.getElementById('listaRotação');
@@ -131,9 +255,8 @@
         }
     
         // --- 3. SEÇÃO DE ASTROMETRIA ---
-        // Aparece se o nome do projeto contiver "astrometria" OU se houver o parâmetro "campos"
         const camposString = p.get('campos');
-        if (projeto.includes("astrometria") || projeto.includes("astrometry") || camposString) {
+        if (projetoNormalizado.includes("astrometria") || projetoNormalizado.includes("astrometry") || camposString) {
             if (camposString) {
                 document.getElementById('secaoAstrometria').style.display = 'block';
                 const container = document.getElementById('listaAstrometria');
@@ -152,7 +275,7 @@
             document.getElementById('linkPlano').href = "../" + p.get('plano');
         }
 
-        // --- EFEMÉRIDES UTC (PICO DOS DIAS - ZEISS) ---
+        // --- EFEMÉRIDES UTC (OBSERVATÓRIO NACIONAL - RJ) ---
         async function buscarEfemérides() {
             const lat = "-22.896"; 
             const lon = "-43.224";
@@ -183,6 +306,181 @@
         }
 
         buscarEfemérides();
+
+        // --- CALCULADORA DE SNR ---
+        function calcularSNR() {
+            const xc = parseFloat(document.getElementById('in_xc').value.replace(',', '.')) || 512.0;
+            const yc = parseFloat(document.getElementById('in_yc').value.replace(',', '.')) || 512.0;
+            const r = parseFloat(document.getElementById('in_r').value.replace(',', '.')) || 5.0;
+            const gain = parseFloat(document.getElementById('in_gain').value.replace(',', '.')) || 1.5;
+            const f_alvo = parseFloat(document.getElementById('in_falvo').value.replace(',', '.')) || 100.0;
+            const f_cel = parseFloat(document.getElementById('in_fcel').value.replace(',', '.')) || 10.0;
+
+            const x_min = Math.floor(xc - r);
+            const x_max = Math.ceil(xc + r);
+            const y_min = Math.floor(yc - r);
+            const y_max = Math.ceil(yc + r);
+
+            let n_pix = 0;
+            for (let x = x_min; x <= x_max; x++) {
+                for (let y = y_min; y <= y_max; y++) {
+                    const distancia = Math.sqrt(Math.pow(x - xc, 2) + Math.pow(y - yc, 2));
+                    if (distancia <= r) {
+                        n_pix++;
+                    }
+                }
+            }
+
+            const snr = (f_alvo * gain) / Math.sqrt((f_alvo + n_pix * f_cel) * gain);
+            const erro_mag = 1.0857 / snr;
+
+            document.getElementById('out_npix').innerText = n_pix;
+            document.getElementById('out_snr').innerText = snr.toFixed(2);
+            document.getElementById('out_err').innerText = erro_mag.toFixed(4);
+            document.getElementById('resultadoSNR').style.display = 'block';
+        }
+
+        // --- SISTEMA DE REGISTRO DE OBSERVAÇÕES (GITHUB API) ---
+        const GITHUB_OWNER = "riogroup";
+        const GITHUB_REPO = "observations";
+        const CAMINHO_ARQUIVO = "observacoes/registros.json";
+        const TELESCOPIO_ATUAL = "ON";
+
+        const chaveNoite = (ano && mes && dia) ? `${parseInt(ano)}-${parseInt(mes)}-${parseInt(dia)}` : "sem-data";
+
+        if (localStorage.getItem('gh_token_obs')) {
+            document.getElementById('log_token').value = localStorage.getItem('gh_token_obs');
+        }
+
+        async function carregarRegistrosDaNoite() {
+            try {
+                const resp = await fetch(`registros.json?v=${new Date().getTime()}`);
+                if (!resp.ok) return;
+                const dados = await resp.json();
+                const lista = dados[chaveNoite] || [];
+                const registrosTel = lista.filter(item => item.telescopio === TELESCOPIO_ATUAL);
+                atualizarTabelaNaTela(registrosTel);
+            } catch (e) {
+                console.log("Nenhum registro anterior carregado localmente.");
+            }
+        }
+
+        function atualizarTabelaNaTela(lista) {
+            const tbody = document.getElementById('corpoTabelaLogs');
+            const area = document.getElementById('areaTabelaLogs');
+            tbody.innerHTML = "";
+            if (!lista || lista.length === 0) {
+                area.style.display = "none";
+                return;
+            }
+            area.style.display = "block";
+            lista.forEach(r => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td style="border: 1px solid #f8bbd0; padding: 5px; font-weight: bold;">${r.objeto}</td>
+                        <td style="border: 1px solid #f8bbd0; padding: 5px;">${r.inicio}</td>
+                        <td style="border: 1px solid #f8bbd0; padding: 5px;">${r.texp}</td>
+                        <td style="border: 1px solid #f8bbd0; padding: 5px;">${r.modo} (${r.bin})</td>
+                        <td style="border: 1px solid #f8bbd0; padding: 5px;">${r.campo}</td>
+                        <td style="border: 1px solid #f8bbd0; padding: 5px;">${r.xy}</td>
+                    </tr>`;
+            });
+        }
+
+        async function salvarRegistroGitHub() {
+            const objeto = document.getElementById('log_obj').value.trim();
+            const inicio = document.getElementById('log_ini').value.trim() || "---";
+            const texp = document.getElementById('log_texp').value.trim() || "---";
+            const modo = document.getElementById('log_modo').value;
+            const bin = document.getElementById('log_bin').value;
+            const campo = document.getElementById('log_campo').value;
+            const xy = document.getElementById('log_xy').value.trim() || "---";
+            const token = document.getElementById('log_token').value.trim();
+            const status = document.getElementById('statusLog');
+
+            if (!objeto) {
+                status.style.color = "#d32f2f";
+                status.innerText = "Digite pelo menos o nome do objeto!";
+                return;
+            }
+            if (!token) {
+                status.style.color = "#d32f2f";
+                status.innerText = "Insira a chave do GitHub (Token) para salvar!";
+                return;
+            }
+
+            localStorage.setItem('gh_token_obs', token);
+            status.style.color = "#6a1b9a";
+            status.innerText = "Enviando para o GitHub...";
+
+            const urlAPI = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${CAMINHO_ARQUIVO}`;
+
+            try {
+                let sha = null;
+                let jsonAtual = {};
+
+                // Verifica se o arquivo registros.json já existe no repositório
+                const getResp = await fetch(urlAPI, {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+
+                if (getResp.status === 200) {
+                    const fileData = await getResp.json();
+                    sha = fileData.sha;
+                    const conteudoTexto = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ""))));
+                    jsonAtual = JSON.parse(conteudoTexto || "{}");
+                } else if (getResp.status !== 404) {
+                    throw new Error("Verifique se o Token tem permissão 'Contents: Read & Write' no repositório.");
+                }
+
+                if (!jsonAtual[chaveNoite]) jsonAtual[chaveNoite] = [];
+
+                jsonAtual[chaveNoite].push({
+                    telescopio: TELESCOPIO_ATUAL,
+                    objeto: objeto,
+                    inicio: inicio,
+                    texp: texp,
+                    modo: modo,
+                    bin: bin,
+                    campo: campo,
+                    xy: xy
+                });
+
+                const novoTexto = JSON.stringify(jsonAtual, null, 2);
+                const novoBase64 = btoa(unescape(encodeURIComponent(novoTexto)));
+
+                const bodyPayload = {
+                    message: `Registro ON: ${objeto} (${chaveNoite})`,
+                    content: novoBase64
+                };
+                if (sha) bodyPayload.sha = sha;
+
+                const putResp = await fetch(urlAPI, {
+                    method: "PUT",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(bodyPayload)
+                });
+
+                if (!putResp.ok) throw new Error("Falha ao gravar no GitHub.");
+
+                status.style.color = "#2e7d32";
+                status.innerText = "Objeto registrado com sucesso no GitHub!";
+                document.getElementById('log_obj').value = "";
+                
+                const registrosTel = jsonAtual[chaveNoite].filter(item => item.telescopio === TELESCOPIO_ATUAL);
+                atualizarTabelaNaTela(registrosTel);
+
+            } catch (erro) {
+                console.error(erro);
+                status.style.color = "#d32f2f";
+                status.innerText = "Erro: " + erro.message;
+            }
+        }
+
+        carregarRegistrosDaNoite();
     </script>
 </body>
 </html>
