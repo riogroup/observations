@@ -340,30 +340,33 @@
             document.getElementById('resultadoSNR').style.display = 'block';
         }
 
-        // --- SISTEMA DE REGISTRO DE OBSERVAÇÕES (GITHUB API) ---
-        const GITHUB_OWNER = "riogroup"; // Ou seu usuário, se criar na conta pessoal
-        const GITHUB_REPO = "registros-observacoes"; // Nome do repositório exclusivo
-        const CAMINHO_ARQUIVO = "registros.json"; // Agora fica direto na raiz desse repositório
+        // --- SISTEMA DE REGISTRO DE OBSERVAÇÕES (REPOSITÓRIO PESSOAL) ---
+        const GITHUB_OWNER = "giuliano-margoti"; // Sua conta pessoal
+        const GITHUB_REPO = "registros-observacoes"; // Repositório exclusivo para os logs
+        const CAMINHO_ARQUIVO = "registros.json";
         const TELESCOPIO_ATUAL = "ON";
 
         const chaveNoite = (ano && mes && dia) ? `${parseInt(ano)}-${parseInt(mes)}-${parseInt(dia)}` : "sem-data";
+        const urlAPI = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${CAMINHO_ARQUIVO}`;
 
         if (localStorage.getItem('gh_token_obs')) {
             document.getElementById('log_token').value = localStorage.getItem('gh_token_obs');
         }
 
+        // Lê os registros direto da API do seu repositório (atualização instantânea sem cache)
         async function carregarRegistrosDaNoite() {
             try {
-                // Lê o registros.json direto do repositório separado
-                const urlLeitura = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/main/${CAMINHO_ARQUIVO}?v=${new Date().getTime()}`;
-                const resp = await fetch(urlLeitura);
+                const resp = await fetch(urlAPI, { cache: "no-store" });
                 if (!resp.ok) return;
-                const dados = await resp.json();
+                const fileData = await resp.json();
+                const conteudoTexto = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ""))));
+                const dados = JSON.parse(conteudoTexto || "{}");
+                
                 const lista = dados[chaveNoite] || [];
                 const registrosTel = lista.filter(item => item.telescopio === TELESCOPIO_ATUAL);
                 atualizarTabelaNaTela(registrosTel);
             } catch (e) {
-                console.log("Nenhum registro anterior carregado.");
+                console.log("Nenhum registro anterior encontrado para esta noite.");
             }
         }
 
@@ -415,15 +418,13 @@
             status.style.color = "#6a1b9a";
             status.innerText = "Enviando para o GitHub...";
 
-            const urlAPI = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${CAMINHO_ARQUIVO}`;
-
             try {
                 let sha = null;
                 let jsonAtual = {};
 
-                // Verifica se o arquivo registros.json já existe no repositório
                 const getResp = await fetch(urlAPI, {
-                    headers: { "Authorization": `Bearer ${token}` }
+                    headers: { "Authorization": `Bearer ${token}` },
+                    cache: "no-store"
                 });
 
                 if (getResp.status === 200) {
@@ -432,7 +433,7 @@
                     const conteudoTexto = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ""))));
                     jsonAtual = JSON.parse(conteudoTexto || "{}");
                 } else if (getResp.status !== 404) {
-                    throw new Error("Verifique se o Token tem permissão 'Contents: Read & Write' no repositório.");
+                    throw new Error("Verifique se o Token e o nome do repositório estão corretos.");
                 }
 
                 if (!jsonAtual[chaveNoite]) jsonAtual[chaveNoite] = [];
@@ -452,7 +453,7 @@
                 const novoBase64 = btoa(unescape(encodeURIComponent(novoTexto)));
 
                 const bodyPayload = {
-                    message: `Registro ON: ${objeto} (${chaveNoite})`,
+                    message: `Registro ${TELESCOPIO_ATUAL}: ${objeto} (${chaveNoite})`,
                     content: novoBase64
                 };
                 if (sha) bodyPayload.sha = sha;
@@ -469,7 +470,7 @@
                 if (!putResp.ok) throw new Error("Falha ao gravar no GitHub.");
 
                 status.style.color = "#2e7d32";
-                status.innerText = "Objeto registrado com sucesso no GitHub!";
+                status.innerText = "Objeto registrado com sucesso!";
                 document.getElementById('log_obj').value = "";
                 
                 const registrosTel = jsonAtual[chaveNoite].filter(item => item.telescopio === TELESCOPIO_ATUAL);
@@ -483,6 +484,7 @@
         }
 
         carregarRegistrosDaNoite();
+        
     </script>
 </body>
 </html>
