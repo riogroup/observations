@@ -62,10 +62,10 @@ function inicializarModuloRegistro(telescopioNome, corTema, corFundoClaro, corBo
             <!-- Abas: Objeto vs Calibração -->
             <div class="tabs-reg">
                 <button type="button" id="tab_btn_obj" class="tab-btn-reg active" onclick="alternarAbaRegistro('objeto')">
-                    Observação de Objeto
+                    Observação
                 </button>
                 <button type="button" id="tab_btn_cal" class="tab-btn-reg" onclick="alternarAbaRegistro('calibracao')">
-                    ⚙️ Calibração (Dark / Bias / Flat)
+                    Calibração (Dark / Bias / Flat)
                 </button>
             </div>
 
