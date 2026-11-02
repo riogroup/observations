@@ -68,81 +68,8 @@
             </div>
         </div>
 
-        <!-- Caixa de Registro de Observação (Log da Noite) -->
-        <div class="aux-box" style="margin-top: 15px;">
-            <span class="solar-title" style="color: #6a1b9a; margin-bottom: 10px;">Registrar Objeto Observado</span>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-                <div style="grid-column: span 2;">
-                    <label style="font-size: 13px; font-weight: bold;">Nome do Objeto:</label><br>
-                    <input type="text" id="log_obj" placeholder="Ex: 2004 UX10" style="width: 95%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
-                </div>
-                <div>
-                    <label style="font-size: 13px; font-weight: bold;">Início (UTC):</label><br>
-                    <input type="text" id="log_ini" placeholder="Ex: 01:40" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
-                </div>
-                <div>
-                    <label style="font-size: 13px; font-weight: bold;">T. Exposição (s):</label><br>
-                    <input type="text" id="log_texp" placeholder="Ex: 2.5s" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
-                </div>
-                <div>
-                    <label style="font-size: 13px; font-weight: bold;">Modo de Aquisição:</label><br>
-                    <select id="log_modo" style="width: 95%; padding: 5px; border: 1px solid #ccc; border-radius: 4px; background: white;">
-                        <option value="Convencional">Convencional</option>
-                        <option value="EMCCD">EMCCD</option>
-                        <option value="Vídeo / QHY">Vídeo / QHY</option>
-                    </select>
-                </div>
-                <div>
-                    <label style="font-size: 13px; font-weight: bold;">Binagem:</label><br>
-                    <select id="log_bin" style="width: 95%; padding: 5px; border: 1px solid #ccc; border-radius: 4px; background: white;">
-                        <option value="1x1">1x1</option>
-                        <option value="2x2">2x2</option>
-                        <option value="3x3">3x3</option>
-                    </select>
-                </div>
-                <div>
-                    <label style="font-size: 13px; font-weight: bold;">Tamanho do Campo:</label><br>
-                    <select id="log_campo" style="width: 95%; padding: 5px; border: 1px solid #ccc; border-radius: 4px; background: white;">
-                        <option value="Full Frame">Full Frame</option>
-                        <option value="Median">Median (512x512)</option>
-                        <option value="Small">Small (256x256)</option>
-                        <option value="ROI Personalizado">ROI Personalizado</option>
-                    </select>
-                </div>
-                <div>
-                    <label style="font-size: 13px; font-weight: bold;">Posição X, Y:</label><br>
-                    <input type="text" id="log_xy" placeholder="Ex: 512, 512" style="width: 90%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
-                </div>
-                <div style="grid-column: span 2;">
-                    <label style="font-size: 11px; color: #555;">Chave GitHub (Token - fica salvo no navegador após a 1ª vez):</label><br>
-                    <input type="password" id="log_token" placeholder="github_pat_... ou ghp_..." style="width: 95%; padding: 4px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px;">
-                </div>
-            </div>
-
-            <button onclick="salvarRegistroGitHub()" id="btnSalvarLog" class="btn-download" style="width: 100%; border: none; cursor: pointer; padding: 10px;">Salvar na Página e no GitHub</button>
-            <div id="statusLog" style="font-size: 12px; margin-top: 8px; font-weight: bold; text-align: center;"></div>
-
-            <!-- Tabela de objetos já observados nesta noite -->
-            <div id="areaTabelaLogs" style="margin-top: 15px; display: none;">
-                <strong style="font-size: 14px; color: #6a1b9a;">Objetos Observados nesta Noite:</strong>
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; background: white; text-align: center;">
-                        <thead>
-                            <tr style="background: #f3e5f5; color: #6a1b9a;">
-                                <th style="border: 1px solid #f8bbd0; padding: 5px;">Objeto</th>
-                                <th style="border: 1px solid #f8bbd0; padding: 5px;">Início</th>
-                                <th style="border: 1px solid #f8bbd0; padding: 5px;">T. Exp</th>
-                                <th style="border: 1px solid #f8bbd0; padding: 5px;">Modo / Bin</th>
-                                <th style="border: 1px solid #f8bbd0; padding: 5px;">Campo</th>
-                                <th style="border: 1px solid #f8bbd0; padding: 5px;">X, Y</th>
-                            </tr>
-                        </thead>
-                        <tbody id="corpoTabelaLogs"></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        <!-- Container onde o módulo externo registro-observacao.js desenha o formulário -->
+        <div id="containerRegistro"></div>
         
         <p><strong>Nota: </strong> <span id="Nota">---</span></p>
 
@@ -158,6 +85,9 @@
         
         <br><a href="../index.html" class="btn">← Voltar</a>
     </div>
+
+    <!-- Importa o arquivo separado de configuração das câmeras e registro -->
+    <script src="registro-observacao.js"></script>
 
     <script>
         const p = new URLSearchParams(window.location.search);
@@ -340,151 +270,8 @@
             document.getElementById('resultadoSNR').style.display = 'block';
         }
 
-        // --- SISTEMA DE REGISTRO DE OBSERVAÇÕES (REPOSITÓRIO PESSOAL) ---
-        const GITHUB_OWNER = "giuliano-margoti"; // Sua conta pessoal
-        const GITHUB_REPO = "registros-observacoes"; // Repositório exclusivo para os logs
-        const CAMINHO_ARQUIVO = "registros.json";
-        const TELESCOPIO_ATUAL = "ON";
-
-        const chaveNoite = (ano && mes && dia) ? `${parseInt(ano)}-${parseInt(mes)}-${parseInt(dia)}` : "sem-data";
-        const urlAPI = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${CAMINHO_ARQUIVO}`;
-
-        if (localStorage.getItem('gh_token_obs')) {
-            document.getElementById('log_token').value = localStorage.getItem('gh_token_obs');
-        }
-
-        // Lê os registros direto da API do seu repositório (atualização instantânea sem cache)
-        async function carregarRegistrosDaNoite() {
-            try {
-                const resp = await fetch(urlAPI, { cache: "no-store" });
-                if (!resp.ok) return;
-                const fileData = await resp.json();
-                const conteudoTexto = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ""))));
-                const dados = JSON.parse(conteudoTexto || "{}");
-                
-                const lista = dados[chaveNoite] || [];
-                const registrosTel = lista.filter(item => item.telescopio === TELESCOPIO_ATUAL);
-                atualizarTabelaNaTela(registrosTel);
-            } catch (e) {
-                console.log("Nenhum registro anterior encontrado para esta noite.");
-            }
-        }
-
-        function atualizarTabelaNaTela(lista) {
-            const tbody = document.getElementById('corpoTabelaLogs');
-            const area = document.getElementById('areaTabelaLogs');
-            tbody.innerHTML = "";
-            if (!lista || lista.length === 0) {
-                area.style.display = "none";
-                return;
-            }
-            area.style.display = "block";
-            lista.forEach(r => {
-                tbody.innerHTML += `
-                    <tr>
-                        <td style="border: 1px solid #f8bbd0; padding: 5px; font-weight: bold;">${r.objeto}</td>
-                        <td style="border: 1px solid #f8bbd0; padding: 5px;">${r.inicio}</td>
-                        <td style="border: 1px solid #f8bbd0; padding: 5px;">${r.texp}</td>
-                        <td style="border: 1px solid #f8bbd0; padding: 5px;">${r.modo} (${r.bin})</td>
-                        <td style="border: 1px solid #f8bbd0; padding: 5px;">${r.campo}</td>
-                        <td style="border: 1px solid #f8bbd0; padding: 5px;">${r.xy}</td>
-                    </tr>`;
-            });
-        }
-
-        async function salvarRegistroGitHub() {
-            const objeto = document.getElementById('log_obj').value.trim();
-            const inicio = document.getElementById('log_ini').value.trim() || "---";
-            const texp = document.getElementById('log_texp').value.trim() || "---";
-            const modo = document.getElementById('log_modo').value;
-            const bin = document.getElementById('log_bin').value;
-            const campo = document.getElementById('log_campo').value;
-            const xy = document.getElementById('log_xy').value.trim() || "---";
-            const token = document.getElementById('log_token').value.trim();
-            const status = document.getElementById('statusLog');
-
-            if (!objeto) {
-                status.style.color = "#d32f2f";
-                status.innerText = "Digite pelo menos o nome do objeto!";
-                return;
-            }
-            if (!token) {
-                status.style.color = "#d32f2f";
-                status.innerText = "Insira a chave do GitHub (Token) para salvar!";
-                return;
-            }
-
-            localStorage.setItem('gh_token_obs', token);
-            status.style.color = "#6a1b9a";
-            status.innerText = "Enviando para o GitHub...";
-
-            try {
-                let sha = null;
-                let jsonAtual = {};
-
-                const getResp = await fetch(urlAPI, {
-                    headers: { "Authorization": `Bearer ${token}` },
-                    cache: "no-store"
-                });
-
-                if (getResp.status === 200) {
-                    const fileData = await getResp.json();
-                    sha = fileData.sha;
-                    const conteudoTexto = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ""))));
-                    jsonAtual = JSON.parse(conteudoTexto || "{}");
-                } else if (getResp.status !== 404) {
-                    throw new Error("Verifique se o Token e o nome do repositório estão corretos.");
-                }
-
-                if (!jsonAtual[chaveNoite]) jsonAtual[chaveNoite] = [];
-
-                jsonAtual[chaveNoite].push({
-                    telescopio: TELESCOPIO_ATUAL,
-                    objeto: objeto,
-                    inicio: inicio,
-                    texp: texp,
-                    modo: modo,
-                    bin: bin,
-                    campo: campo,
-                    xy: xy
-                });
-
-                const novoTexto = JSON.stringify(jsonAtual, null, 2);
-                const novoBase64 = btoa(unescape(encodeURIComponent(novoTexto)));
-
-                const bodyPayload = {
-                    message: `Registro ${TELESCOPIO_ATUAL}: ${objeto} (${chaveNoite})`,
-                    content: novoBase64
-                };
-                if (sha) bodyPayload.sha = sha;
-
-                const putResp = await fetch(urlAPI, {
-                    method: "PUT",
-                    headers: {
-                        "Authorization": `Bearer ${token}`,
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(bodyPayload)
-                });
-
-                if (!putResp.ok) throw new Error("Falha ao gravar no GitHub.");
-
-                status.style.color = "#2e7d32";
-                status.innerText = "Objeto registrado com sucesso!";
-                document.getElementById('log_obj').value = "";
-                
-                const registrosTel = jsonAtual[chaveNoite].filter(item => item.telescopio === TELESCOPIO_ATUAL);
-                atualizarTabelaNaTela(registrosTel);
-
-            } catch (erro) {
-                console.error(erro);
-                status.style.color = "#d32f2f";
-                status.innerText = "Erro: " + erro.message;
-            }
-        }
-
-        carregarRegistrosDaNoite();
-        
+        // Inicializa a caixa de registro passando o nome do telescópio e as cores do tema do ON
+        inicializarModuloRegistro("ON", "#6a1b9a", "#f3e5f5", "#f8bbd0");
     </script>
 </body>
 </html>
